@@ -16,7 +16,7 @@ class DecoratedDesktopPane extends JDesktopPane {
 
 	public DecoratedDesktopPane() {
 		try {
-			img = javax.imageio.ImageIO.read(DecoratedDesktopPane.class.getResource("/resources/logo200X300.png"));
+			img = javax.imageio.ImageIO.read(DecoratedDesktopPane.class.getResource("/resources/projetoETO200x200.png"));
 
 		} catch (Exception ex) {
 		}

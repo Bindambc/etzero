@@ -88,7 +88,7 @@ public class Start {
 			}
 		});
 		frmETzero.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		frmETzero.setIconImage(Toolkit.getDefaultToolkit().getImage(Start.class.getResource("/resources/logo64.png")));
+		frmETzero.setIconImage(Toolkit.getDefaultToolkit().getImage(Start.class.getResource("/resources/projetoETO200x200.png")));
 		frmETzero.setTitle("ETzero");
 
 		// cria uma janela maximizada
