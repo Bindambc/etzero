@@ -1,0 +1,2 @@
+ETzero é um software open source para cálculo de evapotranspiração de referência (ET0). A ET0 é utilizada por especialistas para determinar o balanço hídrico, uma variável importantíssima no manejo de sistemas de irrigação. 
+Veja mais em: http://etzero.net.br/ 
