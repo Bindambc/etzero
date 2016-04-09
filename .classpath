@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="lib" path="miglayout15-swing.jar" sourcepath="miglayout-src.zip"/>
+	<classpathentry kind="lib" path="/mnt/125ADE2E5ADE0E7B/Google Drive/IRRIFES-projeto/código/Bibliotecas/swingx-all-1.6.4.jar" sourcepath="C:/Users/Binda.WS3rvic3/Downloads/commons-net-3.3-bin/commons-net-3.3/commons-net-3.3-sources.jar"/>
+	<classpathentry kind="lib" path="/home/spymaster/Downloads/sqlite-jdbc-3.8.11.2.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
