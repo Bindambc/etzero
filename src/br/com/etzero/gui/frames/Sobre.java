@@ -15,7 +15,7 @@ public class Sobre extends JInternalFrame {
 	private static final long serialVersionUID = 1L;
 
 	public Sobre() {
-		setTitle("Sobre o IrrIfes");
+		setTitle("Sobre o ETzero");
 		setFrameIcon(new ImageIcon(Sobre.class.getResource("/resources/dialog-information.png")));
 		setClosable(true);
 		setBounds(100, 100, 638, 300);
