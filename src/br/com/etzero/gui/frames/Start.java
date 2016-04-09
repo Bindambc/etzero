@@ -30,6 +30,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.URI;
+import java.net.URISyntaxException;
+
 import javax.swing.JDesktopPane;
 
 public class Start {
@@ -192,40 +195,24 @@ public class Start {
 		mnAjuda.setFont(fonteMenu);
 		menuBar.add(mnAjuda);
 
-		JMenuItem mntmManual = new JMenuItem("Manual");
-		mntmManual.addActionListener(new ActionListener() {
+		JMenuItem mntmSite = new JMenuItem("Ajuda na Internet");
+		mntmSite.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				try {
-					InputStream in = this.getClass().getResourceAsStream("HelpFile.html");
-					OutputStream out = new FileOutputStream(System.getProperty("java.io.tmpdir") + "HelpFile.html"); // Transferindo
-																														// bytes
-																														// de
-																														// entrada
-																														// para
-																														// saída
-					System.err.println(in.toString());
-
-					byte[] buf = new byte[1024];
-					int len;
-					while ((len = in.read(buf)) > 0) {
-						out.write(buf, 0, len);
+				
+					try {
+						java.awt.Desktop.getDesktop().browse(new URI("http://www.etzero.net.br"));
+					} catch (IOException | URISyntaxException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
 					}
-					in.close();
-					out.close();
-
-					System.err.println(out.toString());
-					java.awt.Desktop.getDesktop()
-							.open(new File(System.getProperty("java.io.tmpdir") + "/HelpFile.html"));
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				
+			
 			}
 		});
-		mntmManual.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F1, 0));
-		mntmManual.setIcon(new ImageIcon(Start.class.getResource("/resources/text-x-generic-template.png")));
-		mntmManual.setFont(fonteMenuItem);
-		mnAjuda.add(mntmManual);
+		mntmSite.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F1, 0));
+		mntmSite.setIcon(new ImageIcon(Start.class.getResource("/resources/text-x-generic-template.png")));
+		mntmSite.setFont(fonteMenuItem);
+		mnAjuda.add(mntmSite);
 
 		JMenuItem mntmSobre = new JMenuItem("Sobre");
 		mntmSobre.addActionListener(new ActionListener() {
