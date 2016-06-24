@@ -1,3 +1,23 @@
+/*The MIT License (MIT)
+
+Copyright (c) 2016 Mauricio Binda da Costa - mauriciobc.mbc@hotmail.com
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+the Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 package br.com.etzero.dao.crud;
 
 import java.sql.*;
@@ -5,6 +25,7 @@ import java.util.*;
 
 import br.com.etzero.dao.crud.connection.DBConnection;
 import br.com.etzero.entity.crud.Estacao;
+import br.com.etzero.gui.frames.Mensagens;
 
 public class DAOEstacao implements IDAOCrud<Estacao> {
 
@@ -46,6 +67,9 @@ public class DAOEstacao implements IDAOCrud<Estacao> {
 				codigo = entidade.getCodEstacao();
 			}
 		} catch (SQLException e) {
+			Mensagens.mensagemDeErro(
+					"O aplicativo está em uma pasta somente leitura que não permite gravações no banco de dados,\n mova-o para outra pasta e tente novamente.",
+					e);
 			e.printStackTrace();
 		} finally {
 			try {
@@ -63,24 +87,26 @@ public class DAOEstacao implements IDAOCrud<Estacao> {
 		Connection conexao = new DBConnection().geraConexao();
 		PreparedStatement sqlParametro = null;
 		String sql;
-		boolean teste = false;
+		// boolean teste = false;
 		try {
 			sql = "delete from estacao where CodEstacao = ?;";
 			sqlParametro = conexao.prepareStatement(sql);
 			sqlParametro.setInt(1, entidade.getCodEstacao());
 			sqlParametro.executeUpdate();
 		} catch (SQLException e) {
+			// teste = false;
 			e.printStackTrace();
+			return false;
 		} finally {
 			try {
 				sqlParametro.close();
 				conexao.close();
-				teste = true;
+				// teste = true;
 			} catch (Throwable e) {
 				e.printStackTrace();
 			}
 		}
-		return teste;
+		return true;
 	}
 
 	public List<Estacao> listar() {

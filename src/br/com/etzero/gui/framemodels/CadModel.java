@@ -1,3 +1,23 @@
+/*The MIT License (MIT)
+
+Copyright (c) 2016 Mauricio Binda da Costa - mauriciobc.mbc@hotmail.com
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+the Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 package br.com.etzero.gui.framemodels;
 
 import java.awt.Component;
@@ -25,6 +45,7 @@ import javax.swing.JScrollPane;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Font;
 
 /**
  * 
@@ -98,9 +119,10 @@ public abstract class CadModel extends JInternalFrame {
 		panelBotoes.setBorder(null);
 		panelBotoes.setBounds(6, 6, 826, 55);
 		getContentPane().add(panelBotoes);
-		panelBotoes.setLayout(null);
 
-		btnNovo = new JButton("");
+		btnNovo = new JButton("Novo");
+		btnNovo.setFont(new Font("SansSerif", Font.BOLD, 11));
+		btnNovo.setBounds(6, 5, 112, 44);
 		// ///////////////////////////////////////////////////////////////////////////////////////
 		btnNovo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -114,13 +136,15 @@ public abstract class CadModel extends JInternalFrame {
 				busyControle(false);
 			}
 		});
+		panelBotoes.setLayout(null);
 		// ///////////////////////////////////////////////////////////////////////////////////////
 		btnNovo.setToolTipText("Novo");
 		btnNovo.setIcon(new ImageIcon(CadModel.class.getResource("/resources/document-new.png")));
-		btnNovo.setBounds(6, 6, 60, 46);
 		panelBotoes.add(btnNovo);
 
-		btnSalvar = new JButton("");
+		btnSalvar = new JButton("Salvar");
+		btnSalvar.setFont(new Font("SansSerif", Font.BOLD, 11));
+		btnSalvar.setBounds(132, 5, 112, 44);
 		// ///////////////////////////////////////////////////////////////////////////////////////
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -145,10 +169,11 @@ public abstract class CadModel extends JInternalFrame {
 		// ///////////////////////////////////////////////////////////////////////////////////////
 		btnSalvar.setIcon(new ImageIcon(CadModel.class.getResource("/resources/media-floppy.png")));
 		btnSalvar.setToolTipText("Salvar");
-		btnSalvar.setBounds(78, 6, 60, 46);
 		panelBotoes.add(btnSalvar);
 
-		btnEditar = new JButton("");
+		btnEditar = new JButton("Editar");
+		btnEditar.setFont(new Font("SansSerif", Font.BOLD, 11));
+		btnEditar.setBounds(258, 5, 112, 44);
 		// ///////////////////////////////////////////////////////////////////////////////////////
 		btnEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -164,10 +189,11 @@ public abstract class CadModel extends JInternalFrame {
 		// ///////////////////////////////////////////////////////////////////////////////////////
 		btnEditar.setIcon(new ImageIcon(CadModel.class.getResource("/resources/edit-find-replace.png")));
 		btnEditar.setToolTipText("Editar");
-		btnEditar.setBounds(150, 6, 60, 46);
 		panelBotoes.add(btnEditar);
 
-		btnCancelar = new JButton("");
+		btnCancelar = new JButton("Cancelar");
+		btnCancelar.setFont(new Font("SansSerif", Font.BOLD, 11));
+		btnCancelar.setBounds(384, 5, 112, 44);
 		// ///////////////////////////////////////////////////////////////////////////////////////
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -182,10 +208,11 @@ public abstract class CadModel extends JInternalFrame {
 		// ///////////////////////////////////////////////////////////////////////////////////////
 		btnCancelar.setIcon(new ImageIcon(CadModel.class.getResource("/resources/process-stop.png")));
 		btnCancelar.setToolTipText("Cancelar");
-		btnCancelar.setBounds(222, 6, 60, 46);
 		panelBotoes.add(btnCancelar);
 
-		btnExcluir = new JButton("");
+		btnExcluir = new JButton("Excluir");
+		btnExcluir.setFont(new Font("SansSerif", Font.BOLD, 11));
+		btnExcluir.setBounds(510, 5, 112, 44);
 		// ///////////////////////////////////////////////////////////////////////////////////////
 		btnExcluir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -207,7 +234,6 @@ public abstract class CadModel extends JInternalFrame {
 		// ///////////////////////////////////////////////////////////////////////////////////////
 		btnExcluir.setIcon(new ImageIcon(CadModel.class.getResource("/resources/edit-delete.png")));
 		btnExcluir.setToolTipText("Excluir");
-		btnExcluir.setBounds(294, 6, 60, 46);
 		panelBotoes.add(btnExcluir);
 
 		panelCampos = new JPanel();

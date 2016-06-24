@@ -1,3 +1,23 @@
+/*The MIT License (MIT)
+
+Copyright (c) 2016 Mauricio Binda da Costa - mauriciobc.mbc@hotmail.com
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+the Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 package br.com.etzero.gui.frames;
 
 import java.awt.Component;
@@ -140,8 +160,8 @@ public class CadETO extends CadModel {
 		dpData.setBounds(12, 82, 152, 28);
 		panelCampos.add(dpData);
 
-		JLabel lblData = new JLabel("Data");
-		lblData.setBounds(12, 65, 55, 16);
+		JLabel lblData = new JLabel("Data (dd/mm/aaaa)");
+		lblData.setBounds(12, 65, 152, 16);
 		panelCampos.add(lblData);
 
 		tfTempMax = new JTextField();
@@ -149,7 +169,7 @@ public class CadETO extends CadModel {
 		panelCampos.add(tfTempMax);
 		tfTempMax.setColumns(10);
 
-		JLabel lblTemperaturaMax = new JLabel("Temperatura Max");
+		JLabel lblTemperaturaMax = new JLabel("Temperatura Max (C\u00BA)");
 		lblTemperaturaMax.setBounds(176, 65, 122, 16);
 		panelCampos.add(lblTemperaturaMax);
 
@@ -158,7 +178,7 @@ public class CadETO extends CadModel {
 		panelCampos.add(tfTempMin);
 		tfTempMin.setColumns(10);
 
-		JLabel lblTemperaturaMin = new JLabel("Temperatura Min");
+		JLabel lblTemperaturaMin = new JLabel("Temperatura Min (C\u00BA)");
 		lblTemperaturaMin.setBounds(310, 65, 122, 16);
 		panelCampos.add(lblTemperaturaMin);
 
@@ -167,7 +187,7 @@ public class CadETO extends CadModel {
 		panelCampos.add(tfUmidade);
 		tfUmidade.setColumns(10);
 
-		JLabel lblUmidadeRelativa = new JLabel("Umidade Relativa");
+		JLabel lblUmidadeRelativa = new JLabel("Umidade Relativa (%)");
 		lblUmidadeRelativa.setBounds(444, 65, 122, 16);
 		panelCampos.add(lblUmidadeRelativa);
 
@@ -176,7 +196,7 @@ public class CadETO extends CadModel {
 		panelCampos.add(tfVeloVento);
 		tfVeloVento.setColumns(10);
 
-		JLabel lblVelocVento = new JLabel("Veloc. Vento");
+		JLabel lblVelocVento = new JLabel("Veloc. Vento (m/s)");
 		lblVelocVento.setBounds(578, 65, 122, 16);
 		panelCampos.add(lblVelocVento);
 
@@ -185,8 +205,8 @@ public class CadETO extends CadModel {
 		panelCampos.add(textField);
 		textField.setColumns(10);
 
-		JLabel lblRadiaoSolar = new JLabel("Radia\u00E7\u00E3o Solar");
-		lblRadiaoSolar.setBounds(12, 115, 122, 16);
+		JLabel lblRadiaoSolar = new JLabel("Radia\u00E7\u00E3o Solar (W/m\u00B2)");
+		lblRadiaoSolar.setBounds(12, 115, 138, 16);
 		panelCampos.add(lblRadiaoSolar);
 
 		tfETO = new JTextField();
@@ -196,7 +216,7 @@ public class CadETO extends CadModel {
 		tfETO.setColumns(10);
 
 		JLabel lblEto = new JLabel("ETO");
-		lblEto.setBounds(146, 115, 55, 16);
+		lblEto.setBounds(151, 115, 55, 16);
 		panelCampos.add(lblEto);
 
 		btnCalcular = new JButton("Calcular");
@@ -485,7 +505,11 @@ public class CadETO extends CadModel {
 			registro.setveloVento(object.getveloVento());
 
 			new CalculoPM(((Estacao) cbEstacao.getSelectedItem()), registro);
-			registroCrud.salvar(registro);
+
+			// verifica se foi gravado
+			if (registroCrud.salvar(registro) == 0) {
+				return false;
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -497,7 +521,9 @@ public class CadETO extends CadModel {
 	@Override
 	protected boolean btnExcluir() {
 		try {
-			registroCrud.excluir(registro);
+			if (registroCrud.excluir(registro) == false) {
+				return false;
+			}
 		} catch (Exception e) {
 			return false;
 		}

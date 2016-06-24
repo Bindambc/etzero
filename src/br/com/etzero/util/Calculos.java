@@ -1,11 +1,31 @@
+/*The MIT License (MIT)
+
+Copyright (c) 2016 Mauricio Binda da Costa - mauriciobc.mbc@hotmail.com
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+the Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 package br.com.etzero.util;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.Calendar;
 import java.util.Date;
 
 public class Calculos {
+
+	private final double PI = Func.round(Math.PI);
 
 	public int getDia(Date dataRegistro) {
 		Calendar data = Calendar.getInstance();
@@ -42,10 +62,11 @@ public class Calculos {
 	 *            int : dia do ano corrigido.
 	 * @return double : distancia relativa terra-sol.
 	 */
+
 	public double distRelTerraSol(int diaAnoCorrigido) {
 		double distRelTerraSol = 1 + 0.033 * (Math.cos((2 * Math.PI / 365) * diaAnoCorrigido));
 
-		return round(distRelTerraSol);
+		return Func.round(distRelTerraSol);
 	}
 
 	/**
@@ -55,10 +76,11 @@ public class Calculos {
 	 *            int: dia do ano sem correções.
 	 * @return double : declinação solar.
 	 */
-	public double declinSolar(int diaAno) {
-		double declinSolar = 0.409 * (Math.sin((((2 * Math.PI) / 365) * diaAno) - 1.39));
 
-		return round(declinSolar);
+	public double declinSolar(int diaAno) { // alterado valor 0.409 para 0.4093
+		double declinSolar = 0.4093 * (Math.sin((((2 * Math.PI) / 365) * diaAno) - 1.39));
+
+		return Func.round(declinSolar);
 	}
 
 	/**
@@ -71,7 +93,7 @@ public class Calculos {
 	 * @return double : media de temperatura.
 	 */
 	public double mediaTemp(double tempMin, double tempMax) {
-		return round((tempMin + tempMax) / 2);
+		return Func.round((tempMin + tempMax) / 2);
 	}
 
 	/**
@@ -84,7 +106,7 @@ public class Calculos {
 	 * @return double : pressão de saturação do vapor;
 	 */
 	public double pressSatVapor(double pressSatVaporTempMin, double pressSatVaporTempMax) {
-		return round((pressSatVaporTempMin + pressSatVaporTempMax) / 2);
+		return Func.round((pressSatVaporTempMin + pressSatVaporTempMax) / 2);
 	}
 
 	/**
@@ -97,7 +119,7 @@ public class Calculos {
 	 * @return double: pressSatVaporAtual;
 	 */
 	public double pressVaporAtual(double pressSatVapor, double umidadeRelativa) {
-		return round(pressSatVapor * (umidadeRelativa / 100));
+		return Func.round(pressSatVapor * (umidadeRelativa / 100));
 	}
 
 	/**
@@ -108,7 +130,7 @@ public class Calculos {
 	 * @return double : constante de Stefan-Boltzmann a diferentes temperaturas
 	 */
 	public double constanteStefanBoltzmann(double temperatura) {
-		return round(((4.903) * Math.pow(10, -9)) * (Math.pow((temperatura + 273.16), 4)));
+		return Func.round(((4.903) * Math.pow(10, -9)) * (Math.pow((temperatura + 273.16), 4)));
 	}
 
 	/**
@@ -125,9 +147,9 @@ public class Calculos {
 	 */
 	public double latitudeDec(String hemisferio, double latitudeGrau, double latitudeMinuto) {
 		if (hemisferio.equalsIgnoreCase("n")) {
-			return round(latitudeGrau + (latitudeMinuto / 60));
+			return Func.round(latitudeGrau + (latitudeMinuto / 60));
 		} else {
-			return round((latitudeGrau + (latitudeMinuto / 60)) * -1);
+			return Func.round((latitudeGrau + (latitudeMinuto / 60)) * -1);
 		}
 	}
 
@@ -139,7 +161,7 @@ public class Calculos {
 	 * @return double : valor em radianos da latitude;
 	 */
 	public double latitudeRad(double latitudeDec) {
-		return round((Math.PI / 180) * latitudeDec);
+		return Func.round((PI / 180) * latitudeDec);
 	}
 
 	/**
@@ -152,7 +174,7 @@ public class Calculos {
 	 * @return double : anguloPorSol.
 	 */
 	public double anguloPorSol(double latitudeRad, double declinSolar) {
-		return round(Math.acos(-(Math.tan(latitudeRad)) * Math.tan(declinSolar)));
+		return Func.round(Math.acos(-(Math.tan(latitudeRad)) * Math.tan(declinSolar)));
 	}
 
 	/**
@@ -171,7 +193,7 @@ public class Calculos {
 	public double radSolarExtraterrestre(double distRelTerraSol, double anguloPorSol, double latitudeRad,
 			double declinSolar) {
 
-		return round(((24 * 60) / Math.PI) * 0.08020
+		return Func.round(((24 * 60) / Math.PI) * 0.08020
 				* (distRelTerraSol * ((anguloPorSol * Math.sin(latitudeRad) * Math.sin(declinSolar))
 						+ (Math.cos(latitudeRad) * Math.cos(declinSolar) * Math.sin(anguloPorSol)))));
 
@@ -186,8 +208,9 @@ public class Calculos {
 	 *            double : altitude.
 	 * @return double : radiação solar recebida em céu claro.
 	 */
+
 	public double radSolarCeuClaro(double radSolarExtraterrestre, double altitude) {
-		return round((0.75 + (2 * (altitude / 100000))) * radSolarExtraterrestre);
+		return Func.round((0.75 + (2 * (altitude / 100000))) * radSolarExtraterrestre);
 	}
 
 	/**
@@ -198,7 +221,7 @@ public class Calculos {
 	 * @return double : radOndaCurta.
 	 */
 	public double radOndaCurta(double radSolarGlobal) {
-		return round((0.77 * radSolarGlobal));
+		return Func.round((0.77 * radSolarGlobal));
 	}
 
 	/**
@@ -216,9 +239,11 @@ public class Calculos {
 	 *            double : radiação solar recebida em céu claro.
 	 * @return double : radOndaLonga.
 	 */
+
 	public double radOndaLonga(double constStefanTempMin, double constStefanTempMax, double pressVaporAtual,
 			double radSolarGlobal, double radSolarCeuClaro) {
-		return round(((constStefanTempMin + constStefanTempMax) / 2) * (0.34 - 0.14 * Math.sqrt(pressVaporAtual))
+
+		return Func.round(((constStefanTempMin + constStefanTempMax) / 2) * (0.34 - 0.14 * Math.sqrt(pressVaporAtual))
 				* (1.35 * (radSolarGlobal / radSolarCeuClaro) - 0.35));
 	}
 
@@ -232,7 +257,7 @@ public class Calculos {
 	 * @return double : radLiquidaCultura.
 	 */
 	public double radLiquidaCultura(double radOndaCurta, double radOndaLonga) {
-		return round(radOndaCurta - radOndaLonga);
+		return Func.round(radOndaCurta - radOndaLonga);
 	}
 
 	/**
@@ -242,8 +267,9 @@ public class Calculos {
 	 *            double : media entre temperatura maxima e mínima.
 	 * @return double : declividade da curva de pressão do vapor de saturação.
 	 */
+
 	public double declivCurvaPressao(double mediaTemp) {
-		return round((4098 * (0.6108 * Math.exp((17.27 * mediaTemp) / (mediaTemp + 237.3))))
+		return Func.round((4098 * (0.6108 * Math.exp((17.27 * mediaTemp) / (mediaTemp + 237.3))))
 				/ Math.pow((mediaTemp + 237.3), 2));
 	}
 
@@ -255,7 +281,7 @@ public class Calculos {
 	 * @return double : pressão atmosférica.
 	 */
 	public double pressaoAtm(double altitude) {
-		return round(101.3 * Math.pow((293 - 0.0065 * altitude) / 293, 5.26));
+		return Func.round(101.3 * Math.pow((293 - 0.0065 * altitude) / 293, 5.26));
 	}
 
 	/**
@@ -266,7 +292,7 @@ public class Calculos {
 	 * @return double : constante psicrométrica.
 	 */
 	public double constPsicrometrica(double pressaoAtm) {
-		return round((0.665 * Math.pow(10, -3)) * pressaoAtm);
+		return Func.round((0.665 * Math.pow(10, -3)) * pressaoAtm);
 	}
 
 	/**
@@ -278,7 +304,7 @@ public class Calculos {
 	 *         temperaturas.
 	 */
 	public double pressSatVaporTemp(double temperatura) {
-		return round(0.6108 * Math.exp((17.27 * temperatura) / (temperatura + 237.3)));
+		return Func.round(0.6108 * Math.exp((17.27 * temperatura) / (temperatura + 237.3)));
 	}
 
 	/**
@@ -289,7 +315,7 @@ public class Calculos {
 	 * @return double : radiação solar global.
 	 */
 	public double radSolarGlobal(double radiacaoSolar) {
-		return round(radiacaoSolar * 0.0864);
+		return Func.round(radiacaoSolar * 0.0864);
 	}
 
 	/**
@@ -300,7 +326,7 @@ public class Calculos {
 	 * @return double : velocidade do vento.
 	 */
 	public double velocVento(double velocidade) {
-		return round(velocidade * 86.4);
+		return Func.round(velocidade * 86.4);
 	}
 
 	/**
@@ -315,27 +341,13 @@ public class Calculos {
 	 * @param constPsicrometrica
 	 * @return double : Valor ETO
 	 */
+
 	public double ETO(double radLiquidaCultura, double mediaTemp, double velocidadeVento, double pressSatVapor,
 			double pressVaporAtual, double declivCurvaPressao, double constPsicrometrica) {
 
-		return round((0.408 * declivCurvaPressao * radLiquidaCultura
+		return Func.round((0.408 * declivCurvaPressao * radLiquidaCultura
 				+ constPsicrometrica * (900 / (mediaTemp + 273)) * velocidadeVento * (pressSatVapor - pressVaporAtual))
 				/ (declivCurvaPressao + constPsicrometrica * (1 + 0.34 * velocidadeVento)), 3);
-
 	}
 
-	// arredonda para tres casas decimais
-	public double round(double value) {
-		BigDecimal bd = new BigDecimal(value).setScale(3, RoundingMode.UP);
-
-		return bd.doubleValue();
-
-	}
-
-	public double round(double value, int scale) {
-		BigDecimal bd = new BigDecimal(value).setScale(scale, RoundingMode.UP);
-
-		return bd.doubleValue();
-
-	}
 }
