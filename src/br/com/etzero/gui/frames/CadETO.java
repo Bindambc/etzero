@@ -122,8 +122,8 @@ public class CadETO extends CadModel {
 		lblEstao.setBounds(12, 13, 55, 16);
 		panelCampos.add(lblEstao);
 
-		JLabel lblGraus = new JLabel("Graus");
-		lblGraus.setBounds(287, 13, 55, 16);
+		JLabel lblGraus = new JLabel("Latitude: Graus");
+		lblGraus.setBounds(287, 13, 122, 16);
 		panelCampos.add(lblGraus);
 
 		tfLatitudeMinutos = new JTextField();
@@ -132,8 +132,8 @@ public class CadETO extends CadModel {
 		panelCampos.add(tfLatitudeMinutos);
 		tfLatitudeMinutos.setColumns(10);
 
-		JLabel lblMinutos = new JLabel("Minutos");
-		lblMinutos.setBounds(421, 13, 55, 16);
+		JLabel lblMinutos = new JLabel("Latitude: Minutos");
+		lblMinutos.setBounds(421, 13, 122, 16);
 		panelCampos.add(lblMinutos);
 
 		tfAltitude = new JTextField();
@@ -142,8 +142,8 @@ public class CadETO extends CadModel {
 		panelCampos.add(tfAltitude);
 		tfAltitude.setColumns(10);
 
-		JLabel lblAltitude = new JLabel("Altitude");
-		lblAltitude.setBounds(555, 13, 55, 16);
+		JLabel lblAltitude = new JLabel("Altitude (m)");
+		lblAltitude.setBounds(555, 13, 99, 16);
 		panelCampos.add(lblAltitude);
 
 		tfHemisferio = new JTextField();
@@ -215,8 +215,8 @@ public class CadETO extends CadModel {
 		panelCampos.add(tfETO);
 		tfETO.setColumns(10);
 
-		JLabel lblEto = new JLabel("ETO");
-		lblEto.setBounds(151, 115, 55, 16);
+		JLabel lblEto = new JLabel("ET0 (mm/dia)");
+		lblEto.setBounds(151, 115, 75, 16);
 		panelCampos.add(lblEto);
 
 		btnCalcular = new JButton("Calcular");

@@ -34,8 +34,8 @@ public class ModelLisRegistroEto extends AbstractTableModel {
 
 	private List<LisRegistroEto> objetos;
 
-	private String[] colunasJTable = new String[] { "CodRegistro", "DataRegistro", "TempMax", "TempMin", "UmidRelativa",
-			"veloVento", "radSolar", "ETO", "CodEstacao" };
+	private String[] colunasJTable = new String[] { "Data", "Temp Max (Cº)", "Temp Min (Cº)", "Umidade Rel. (%)",
+			"vel. Vento (m/s)", "rad. solar (W/m²)", "ET0 (mm/dia)" };
 
 	private String[] colunasTabela = new String[] { "CodRegistro", "DataRegistro", "TempMax", "TempMin", "UmidRelativa",
 			"veloVento", "radSolar", "ETO", "CodEstacao" };
@@ -51,10 +51,12 @@ public class ModelLisRegistroEto extends AbstractTableModel {
 	@Override
 	public Class<?> getColumnClass(int columnIndex) {
 		switch (columnIndex) {
+		// case 0:
+		// return int.class;
 		case 0:
-			return int.class;
-		case 1:
 			return Date.class;
+		case 1:
+			return double.class;
 		case 2:
 			return double.class;
 		case 3:
@@ -65,10 +67,8 @@ public class ModelLisRegistroEto extends AbstractTableModel {
 			return double.class;
 		case 6:
 			return double.class;
-		case 7:
-			return double.class;
-		case 8:
-			return int.class;
+		// case 8:
+		// return int.class;
 		default:
 			throw new IndexOutOfBoundsException("Índice fora do limite");
 		}
@@ -79,23 +79,23 @@ public class ModelLisRegistroEto extends AbstractTableModel {
 		LisRegistroEto objeto = objetos.get(rowIndex);
 		switch (columnIndex) {
 		case 0:
-			return objeto.getCodRegistro();
-		case 1:
 			return objeto.getDataRegistro();
-		case 2:
+		// case 1:
+		// return objeto.getDataRegistro();
+		case 1:
 			return objeto.getTempMax();
-		case 3:
+		case 2:
 			return objeto.getTempMin();
-		case 4:
+		case 3:
 			return objeto.getUmidRelativa();
-		case 5:
+		case 4:
 			return objeto.getveloVento();
-		case 6:
+		case 5:
 			return objeto.getradSolar();
-		case 7:
+		case 6:
 			return objeto.getETO();
-		case 8:
-			return objeto.getCodEstacao();
+		// case 7:
+		// return objeto.getCodEstacao();
 		default:
 			throw new IndexOutOfBoundsException("Índice fora do limite");
 		}

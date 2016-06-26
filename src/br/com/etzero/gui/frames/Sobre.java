@@ -54,7 +54,7 @@ public class Sobre extends JInternalFrame {
 		scrollPane.setViewportView(txtpnVersoData);
 		txtpnVersoData.setEditable(false);
 		txtpnVersoData.setFont(new Font("SansSerif", Font.PLAIN, 12));
-		txtpnVersoData.setText("Versão: 1.1 \nData da Versão: 23/06/2016 \nDesenvolvedores:  "
+		txtpnVersoData.setText("Versão: 1.1.1 \nData da Versão: 23/06/2016 \nDesenvolvedores:  "
 				+ "Mauricio Binda da Costa, Gustavo Haddad Souza Vieira, Thiago Redighieri, Danielle Pereira de Melo, Lucas Miranda Quintela \n\n"
 				+ "Licença: The MIT License (MIT)Copyright (c) 2016 Mauricio Binda da Costa - mauriciobc.mbc@hotmail.com\n\n "
 				+ "Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation "

@@ -53,7 +53,8 @@ public class cadEstacao extends CadModel {
 
 	private BLLLisEstacao estacaoView = new BLLLisEstacao();
 	private BLLEstacao estacaoCrud = new BLLEstacao();
-	private ModelLisEstacao modeloTabela= new ModelLisEstacao(estacaoView.listar());
+	private ModelLisEstacao modeloTabela;// = new
+											// ModelLisEstacao(estacaoView.listar());
 	// //////////////////////////////////////////////////////////
 	private LisEstacao object = new LisEstacao();
 	private Estacao estacao;
@@ -114,6 +115,7 @@ public class cadEstacao extends CadModel {
 		panelCampos.add(lblAltitudem);
 		// /////////////////////////////////////////////////////////
 		controleComponentes(false);
+		modeloTabela = new ModelLisEstacao();
 		carregarModelos();
 		// /////////////////////////////////////////////////////////
 	}
@@ -122,6 +124,7 @@ public class cadEstacao extends CadModel {
 	protected void carregarModelos() {
 		// preenche e atualiza os componentes manipuladores de entidades
 		busyControle(true);
+
 		modeloTabela.Recarregar(estacaoView.listar());
 		tableView.setModel(modeloTabela);
 		busyControle(false);

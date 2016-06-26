@@ -32,8 +32,8 @@ public class ModelLisEstacao extends AbstractTableModel {
 
 	private List<LisEstacao> objetos;
 
-	private String[] colunasJTable = new String[] { "CodEstacao", "Descricao", "LatitudeGrau", "LatitudeMinuto",
-			"Hemisferio", "Altitude" };
+	private String[] colunasJTable = new String[] { "Descricao", "Latitude: Grau", "Latitude: Minuto", "Hemisferio",
+			"Altitude (m)" };
 
 	private String[] colunasTabela = new String[] { "CodEstacao", "Descricao", "LatitudeGrau", "LatitudeMinuto",
 			"Hemisferio", "Altitude" };
@@ -49,17 +49,17 @@ public class ModelLisEstacao extends AbstractTableModel {
 	@Override
 	public Class<?> getColumnClass(int columnIndex) {
 		switch (columnIndex) {
+		// case 0:
+		// return int.class;
 		case 0:
-			return int.class;
-		case 1:
 			return String.class;
+		case 1:
+			return int.class;
 		case 2:
 			return int.class;
 		case 3:
-			return int.class;
-		case 4:
 			return String.class;
-		case 5:
+		case 4:
 			return int.class;
 		default:
 			throw new IndexOutOfBoundsException("Índice fora do limite");
@@ -71,17 +71,17 @@ public class ModelLisEstacao extends AbstractTableModel {
 		LisEstacao objeto = objetos.get(rowIndex);
 		switch (columnIndex) {
 		case 0:
-			return objeto.getCodEstacao();
-		case 1:
 			return objeto.getDescricao();
-		case 2:
+		case 1:
 			return objeto.getLatitudeGrau();
-		case 3:
+		case 2:
 			return objeto.getLatitudeMinuto();
-		case 4:
+		case 3:
 			return objeto.getHemisferio();
-		case 5:
+		case 4:
 			return objeto.getAltitude();
+		// case 5:
+		// return objeto.getAltitude();
 		default:
 			throw new IndexOutOfBoundsException("Índice fora do limite");
 		}
